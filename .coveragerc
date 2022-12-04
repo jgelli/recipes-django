@@ -1,0 +1,3 @@
+[run]
+branch = True
+omit = venv/*,**/*test*.py,manage.py,**/__init__.py,project/*,utils/recipes/factory.py

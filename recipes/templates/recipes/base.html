@@ -1,0 +1,24 @@
+{% extends 'global/layouts/base.html' %}
+{% block title %} Recipe title{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block content %}
+    {% include 'recipes/partials/header.html' %}
+
+    {% include 'recipes/partials/search.html' %}
+    
+    <main class="main-content-container">
+
+        {% block recipe %}{% endblock recipe %}
+        
+    </main>
+
+{% endblock content %}
+
+{% block pagination %}
+    
+    {% include 'recipes/partials/pagination.html' %}
+
+{% endblock pagination %}
