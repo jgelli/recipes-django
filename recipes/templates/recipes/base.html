@@ -5,9 +5,8 @@
 {% endblock css %}
 
 {% block content %}
-    {% include 'recipes/partials/header.html' %}
 
-    {% include 'recipes/partials/search.html' %}
+    {% include 'global/partials/search.html' %}
     
     <main class="main-content-container">
 
@@ -19,6 +18,6 @@
 
 {% block pagination %}
     
-    {% include 'recipes/partials/pagination.html' %}
+    {% include 'global/partials/pagination.html' %}
 
 {% endblock pagination %}

@@ -75,7 +75,7 @@ class RecipeSearchViewTest(RecipeTestBase):
 
     def test_recipe_search_is_paginated(self):
         recipe_title = 'Recipe'
-        for i in range(9):
+        for i in range(3):
             kwargs = {
                 'author_data': {'username': f'u{i}'},
                 'category_data': {'slug': f'slug{i}'},
@@ -84,7 +84,7 @@ class RecipeSearchViewTest(RecipeTestBase):
             }
             self.make_recipe(**kwargs)
 
-        with patch('recipes.views.PER_PAGE', new=3):
+        with patch('recipes.views.PER_PAGE', new=1):
             search_url = reverse('recipes:search')
 
             response = self.client.get(f'{search_url}?q={recipe_title}')
@@ -92,6 +92,6 @@ class RecipeSearchViewTest(RecipeTestBase):
             paginator = recipes.paginator
 
             self.assertEqual(paginator.num_pages, 3)
-            self.assertEqual(len(paginator.get_page(1)), 3)
-            self.assertEqual(len(paginator.get_page(2)), 3)
-            self.assertEqual(len(paginator.get_page(3)), 3)
+            self.assertEqual(len(paginator.get_page(1)), 1)
+            self.assertEqual(len(paginator.get_page(2)), 1)
+            self.assertEqual(len(paginator.get_page(3)), 1)

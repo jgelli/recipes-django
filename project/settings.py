@@ -34,7 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 CUSTOM_APPS = [
-    'recipes'
+    'recipes',
+    'authors',
 ]
 
 DEFAULT_APPS = [

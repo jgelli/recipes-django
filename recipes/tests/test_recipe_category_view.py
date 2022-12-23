@@ -57,7 +57,7 @@ class RecipeCategoryViewTest(RecipeTestBase):
         self.make_recipe()
 
         category = self.make_category(slug='slug-test')
-        for i in range(9):
+        for i in range(3):
             kwargs = {
                 'author_data': {'username': f'u{i}'},
                 'category': category,
@@ -65,12 +65,12 @@ class RecipeCategoryViewTest(RecipeTestBase):
             }
             self.make_recipe_with_category(**kwargs)
 
-        with patch('recipes.views.PER_PAGE', new=3):
+        with patch('recipes.views.PER_PAGE', new=1):
             response = self.client.get(reverse('recipes:category', kwargs={'category_slug': category.slug}))
             recipes = response.context['recipes']
             paginator = recipes.paginator
 
             self.assertEqual(paginator.num_pages, 3)
-            self.assertEqual(len(paginator.get_page(1)), 3)
-            self.assertEqual(len(paginator.get_page(2)), 3)
-            self.assertEqual(len(paginator.get_page(3)), 3)
+            self.assertEqual(len(paginator.get_page(1)), 1)
+            self.assertEqual(len(paginator.get_page(2)), 1)
+            self.assertEqual(len(paginator.get_page(3)), 1)
