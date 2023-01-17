@@ -12,7 +12,7 @@ class RecipeDetailViewTest(RecipeTestBase):
 
     def test_recipe_detail_view_function_is_correct(self):
         view = resolve(reverse('recipes:recipe', kwargs={'recipe_slug': 'pizza-de-forno'}))
-        self.assertIs(view.func, views.recipe)
+        self.assertIs(view.func.view_class, views.RecipeDetail)
 
     def test_recipe_detail_view_returns_404_if_no_recipes_found(self):
         response = self.client.get(reverse('recipes:recipe', kwargs={'recipe_slug': 'non-existent-recipe'}))

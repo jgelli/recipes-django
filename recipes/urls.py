@@ -6,9 +6,9 @@ from . import views
 app_name = 'recipes'
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('recipes/search/', views.search, name='search'),
-    path('recipes/<slug:recipe_slug>/', views.recipe, name='recipe'),
-    path('recipes/category/<slug:category_slug>/', views.category, name='category'),
+    path('', views.RecipeListViewHome.as_view(), name='home'),
+    path('recipes/search/', views.RecipeListViewSearch.as_view(), name='search'),
+    path('recipes/<slug:recipe_slug>/', views.RecipeDetail.as_view(), name='recipe'),
+    path('recipes/category/<slug:category_slug>/', views.RecipeListViewCategory.as_view(), name='category'),
 
 ]

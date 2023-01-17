@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -29,3 +31,22 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('recipes:recipe', kwargs={'recipe_slug': self.slug})
+
+    def get_slug(self):
+        slug = slugify(self.title)
+        unique_slug = slug
+
+        number = 1
+        while Recipe.objects.filter(slug=unique_slug).exists():
+            unique_slug = f'{slug}-{number}'
+            number += 1
+
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.get_slug()
+        return super().save(*args, **kwargs)

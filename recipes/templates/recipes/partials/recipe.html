@@ -2,7 +2,7 @@
 <div class="recipe recipe-list-item">
     <div class="recipe-cover">
         {% comment %} <img src="https://via.placeholder.com/1280x720.jpeg/421215" alt=""> {% endcomment %}
-        <a href="{% url 'recipes:recipe' recipe.slug %}">
+        <a href="{{ recipe.get_absolute_url }}">
             {% if recipe.cover %}
                 <img src="{{ recipe.cover.url }}" alt="">
             {% else %}
@@ -12,7 +12,7 @@
     </div>
     <div class="recipe-title-container">
         <h2 class="recipe-title">
-            <a href="{% url 'recipes:recipe' recipe.slug%}">
+            <a href="{{ recipe.get_absolute_url }}">
                 {{ recipe.title }}
             </a>
         </h2>
