@@ -28,7 +28,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')  # noqa: E501
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
-ALLOWED_HOSTS = ['*', 'https://teste.jgelli.dev', 'teste.jgelli.dev', ]
+ALLOWED_HOSTS = ['https://*', ]
+CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS.copy()
 
 
 # Application definition
