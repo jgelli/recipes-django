@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')  # noqa: E501
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
 ALLOWED_HOSTS = ['http://*', 'https://*', '54.164.122.43', 'teste.jgelli.dev']
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS.copy()
+CSRF_TRUSTED_ORIGINS = ['https://*.jgelli.dev',]
 
 
 # Application definition
