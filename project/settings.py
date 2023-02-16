@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+if os.environ.get('DEBUG', None) is None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')  # noqa: E501
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
-ALLOWED_HOSTS = ['http://*', 'https://*', '54.164.122.43', 'teste.jgelli.dev']
+ALLOWED_HOSTS = ['http://*', 'https://*', '54.164.122.43', 'teste.jgelli.dev', 'localhost']
 CSRF_TRUSTED_ORIGINS = ['https://*.jgelli.dev',]
 
 
@@ -37,6 +41,7 @@ CSRF_TRUSTED_ORIGINS = ['https://*.jgelli.dev',]
 CUSTOM_APPS = [
     'recipes',
     'authors',
+    'tag'
 ]
 
 DEFAULT_APPS = [

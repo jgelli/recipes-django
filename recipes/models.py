@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-
+from django.contrib.contenttypes.fields import GenericRelation
+from tag.models import Tag
 
 class Category(models.Model):
     name = models.CharField(max_length=65)
@@ -28,6 +29,7 @@ class Recipe(models.Model):
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+    tags = GenericRelation(Tag, related_query_name='recipes')
 
     def __str__(self):
         return self.title
